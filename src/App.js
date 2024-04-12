@@ -3,35 +3,9 @@
 //I want to hide the answer so that teachers can give students time to think about the answer.
 //In the future I would like to allow teachers to choose the resource that they would like to do addition practice with.
 
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
-  const [num1, setNum1] = React.useState(0);
-  const [num2, setNum2] = React.useState(0);
-  const [num3, setNum3] = React.useState(0);
-
-  const generateNumbers = () => {
-    let newNum1 = 0;
-    let newNum2 = 0;
-
-    while (newNum1 === 0 || newNum2 === 0) {
-      newNum1 = Math.floor(Math.random() * 10);
-      newNum2 = Math.floor(Math.random() * 10);
-    }
-
-    setNum1(newNum1);
-    setNum2(newNum2);
-    setNum3(newNum1 + newNum2);
-  };
-
-  React.useEffect(() => {
-    generateNumbers();
-  }, []);
-
-  const handleNext = () => {
-    generateNumbers();
-  };
-
   const getImageFileName = (num) => {
     switch (num) {
       case 1:
@@ -59,6 +33,38 @@ function App() {
     }
   };
 
+  const [num1, setNum1] = React.useState(0);
+  const [num2, setNum2] = React.useState(0);
+  const [num3, setNum3] = React.useState(0);
+  const [showNum3, setShowNum3] = useState(false);
+
+  const generateNumbers = () => {
+    let newNum1 = 0;
+    let newNum2 = 0;
+
+    while (newNum1 === 0 || newNum2 === 0) {
+      newNum1 = Math.floor(Math.random() * 10);
+      newNum2 = Math.floor(Math.random() * 10);
+    }
+
+    setNum1(newNum1);
+    setNum2(newNum2);
+    setNum3(newNum1 + newNum2);
+  };
+
+  React.useEffect(() => {
+    generateNumbers();
+  }, []);
+
+  const handleNext = () => {
+    generateNumbers();
+    setShowNum3(false);
+  };
+
+  const handleClick = () => {
+    setShowNum3(true);
+  };
+
   return (
     <>
       <div class="page">
@@ -73,14 +79,21 @@ function App() {
             <img src={getImageFileName(num2)} alt={num2} className="box-img" />
           </div>
           <div className="equals-sign">=</div>
-          <div class="box right">{num3}</div>
+          <div className="box right" onClick={handleClick}>
+            {showNum3 ? (
+              num3
+            ) : (
+              <span className="star" onClick={handleClick}>
+                &#9733;
+              </span>
+            )}
+          </div>
         </div>
         <div class="button-container">
           <button class="next" onClick={handleNext}>
-            Next question  
+            Next question
           </button>
         </div>
-
       </div>
     </>
   );
