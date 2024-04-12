@@ -11,8 +11,14 @@ function App() {
   const [num3, setNum3] = React.useState(0);
 
   const generateNumbers = () => {
-    const newNum1 = Math.floor(Math.random() * 10);
-    const newNum2 = Math.floor(Math.random() * 10);
+    let newNum1 = 0;
+    let newNum2 = 0;
+
+    while (newNum1 === 0 || newNum2 === 0) {
+      newNum1 = Math.floor(Math.random() * 10);
+      newNum2 = Math.floor(Math.random() * 10);
+    }
+
     setNum1(newNum1);
     setNum2(newNum2);
     setNum3(newNum1 + newNum2);
