@@ -61,16 +61,26 @@ function App() {
 
   return (
     <>
-      <h1>Addition practice App</h1>
-      <div class="container">
-        <div class="box left">
-          <img src={getImageFileName(num1)} alt={num1} className="box-img" />
+      <div class="page">
+        <h1>Numicon addition practice game</h1>
+
+        <div class="container">
+          <div class="box left">
+            <img src={getImageFileName(num1)} alt={num1} className="box-img" />
+          </div>
+          <div className="addition-sign">+</div>
+          <div class="box center">
+            <img src={getImageFileName(num2)} alt={num2} className="box-img" />
+          </div>
+          <div className="equals-sign">=</div>
+          <div class="box right">{num3}</div>
         </div>
-        <div class="box center">
-          <img src={getImageFileName(num2)} alt={num2} className="box-img" />
+        <div class="button-container">
+          <button class="next" onClick={handleNext}>
+            Next question  
+          </button>
         </div>
-        <div class="box right">{num3}</div>
-        <button onClick={handleNext}>Next question</button>
+
       </div>
     </>
   );
