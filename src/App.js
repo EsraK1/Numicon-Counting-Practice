@@ -1,7 +1,3 @@
-//I want to create an app that will allow teachers to be able to do addition practice using numicons.
-//Numicons will be chosen at random and the students will have to add them together.
-//I want to hide the answer so that teachers can give students time to think about the answer.
-//In the future I would like to allow teachers to choose the resource that they would like to do addition practice with.
 
 import React, { useState } from "react";
 
