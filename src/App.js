@@ -86,7 +86,7 @@ function App() {
           </div>
         </div>
         <div class="button-container">
-          <button class="next" onClick={handleNext}>
+          <button class="button" onClick={handleNext}>
             Next question
           </button>
         </div>
