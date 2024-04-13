@@ -14,8 +14,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;}
+  width: 400px;
+  height: 400px;}
 
 .box-img {
   max-width: 100%;
@@ -23,15 +23,13 @@ h1 {
 }
 
 .right {
-  margin-left: 20px; 
   font-size: 36px;
 }
 .addition-sign,
 .equals-sign {
   font-size: 36px;
-  margin: 80px 0;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 170px 0;
+
 }
 .button-container {
   display: flex;

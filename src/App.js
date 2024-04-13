@@ -15,13 +15,13 @@ function App() {
       case 5:
         return require("./numicons/numicon_5.png");
       case 6:
-        return require("./numicons/numicon_6.jpeg");
+        return require("./numicons/numicon_6.png");
       case 7:
         return require("./numicons/numicon_7.png");
       case 8:
-        return require("./numicons/numicon_8.jpeg");
+        return require("./numicons/numicon_8.png");
       case 9:
-        return require("./numicons/numicon_9.jpeg");
+        return require("./numicons/numicon_9.png");
       case 10:
         return require("./numicons/numicon_10.png");
       default:
