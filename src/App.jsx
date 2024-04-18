@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import GameDisplay from "./components/GameDisplay";
 import OperationSelection from "./components/OperationSelection";
 
@@ -10,7 +10,7 @@ function App() {
   const [num3, setNum3] = useState(0);
   const [showNum3, setShowNum3] = useState(false);
 
-  const generateNumbers = () => {
+  const generateNumbers = useCallback(() => {
     let newNum1 = 0;
     let newNum2 = 0;
 
@@ -21,17 +21,29 @@ function App() {
 
     setNum1(newNum1);
     setNum2(newNum2);
-    if (selectedOperation === "addition") {
-      setNum3(newNum1 + newNum2);
-    } else if (selectedOperation === "subtraction") {
-      setNum3(newNum1 - newNum2);
+
+    switch (selectedOperation) {
+      case "addition":
+        setNum3(newNum1 + newNum2);
+        break;
+      case "subtraction":
+        setNum3(newNum1 - newNum2);
+        break;
+      default:
+        setNum3(0);
     }
-  };
+  }, [selectedOperation]);
+
+  React.useEffect(() => {
+    if (selectedOperation) {
+      generateNumbers();
+    }
+  }, [selectedOperation, generateNumbers]);
 
   const handleOperationSelect = (selectedOperation) => {
     setSelectedOperation(selectedOperation);
-    generateNumbers();
     setShowOperationSelection(false);
+    generateNumbers();
   };
 
   const handleNext = () => {
@@ -51,7 +63,7 @@ function App() {
 
   return (
     <div className="page">
-      <h1>Numicon Practice Game</h1>
+      <h1>Numicon {selectedOperation} practice</h1>
       {showOperationSelection ? (
         <OperationSelection onSelect={handleOperationSelect} />
       ) : (
