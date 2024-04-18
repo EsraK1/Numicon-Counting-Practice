@@ -36,7 +36,6 @@ function GameDisplay({
     }
   };
 
-  console.log(selectedOperation, '<---selectedOperation')
   return (
     <div className="game-display">
       <div className="container">

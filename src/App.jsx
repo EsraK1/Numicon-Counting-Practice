@@ -4,6 +4,7 @@ import OperationSelection from "./components/OperationSelection";
 
 function App() {
   const [selectedOperation, setSelectedOperation] = useState(null);
+  const [showOperationSelection, setShowOperationSelection] = useState(true);
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [num3, setNum3] = useState(0);
@@ -30,6 +31,7 @@ function App() {
   const handleOperationSelect = (selectedOperation) => {
     setSelectedOperation(selectedOperation);
     generateNumbers();
+    setShowOperationSelection(false);
   };
 
   const handleNext = () => {
@@ -41,10 +43,16 @@ function App() {
     setShowNum3(true);
   };
 
+  const handleChangeOperation = () => {
+    setShowOperationSelection(true);
+    setSelectedOperation(null);
+    setShowNum3(false);
+  };
+
   return (
     <div className="page">
       <h1>Numicon Practice Game</h1>
-      {!selectedOperation ? (
+      {showOperationSelection ? (
         <OperationSelection onSelect={handleOperationSelect} />
       ) : (
         <>
@@ -61,6 +69,9 @@ function App() {
           <div className="button-container">
             <button className="button" onClick={handleNext}>
               Next question
+            </button>
+            <button className="button" onClick={handleChangeOperation}>
+              Change Operation
             </button>
           </div>
         </>
