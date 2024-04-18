@@ -3,7 +3,7 @@ import React from "react";
 function OperationSelection({ onSelect }) {
   return (
     <div className="button-container">
-      <h2>Select Operation</h2>
+      <h2>Select operation</h2>
 
       <button className="button" onClick={() => onSelect("addition")}>
         Addition

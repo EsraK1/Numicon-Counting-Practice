@@ -10,30 +10,10 @@ function GameDisplay({
   selectedOperation,
 }) {
   const getImageFileName = (num) => {
-    switch (num) {
-      case 1:
-        return require("../numicons/numicon_1.png");
-      case 2:
-        return require("../numicons/numicon_2.png");
-      case 3:
-        return require("../numicons/numicon_3.png");
-      case 4:
-        return require("../numicons/numicon_4.png");
-      case 5:
-        return require("../numicons/numicon_5.png");
-      case 6:
-        return require("../numicons/numicon_6.png");
-      case 7:
-        return require("../numicons/numicon_7.png");
-      case 8:
-        return require("../numicons/numicon_8.png");
-      case 9:
-        return require("../numicons/numicon_9.png");
-      case 10:
-        return require("../numicons/numicon_10.png");
-      default:
-        return null;
+    if (num < 1 || num > 10) {
+      return null;
     }
+    return require(`../numicons/numicon_${num}.png`);
   };
 
   return (
