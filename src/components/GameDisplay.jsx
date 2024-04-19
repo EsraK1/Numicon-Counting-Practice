@@ -16,11 +16,19 @@ function GameDisplay({
     return require(`../numicons/numicon_${num}.png`);
   };
 
+  const rotation = Math.floor(Math.random() * 4) * 90;
   return (
     <div className="game-display">
       <div className="container">
         <div className="box left">
-          <img src={getImageFileName(num1)} alt={num1} className="box-img" />
+          <img
+            src={getImageFileName(num1)}
+            alt={num1}
+            style={{
+              transform: `rotate(${rotation}deg)`,
+            }}
+            className="box-img"
+          />
         </div>
         <div className="operation-sign">
           {selectedOperation === "addition"
@@ -31,7 +39,14 @@ function GameDisplay({
         </div>
 
         <div className="box center">
-          <img src={getImageFileName(num2)} alt={num2} className="box-img" />
+          <img
+            src={getImageFileName(num2)}
+            alt={num2}
+            style={{
+              transform: `rotate(${rotation}deg)`,
+            }}
+            className="box-img"
+          />
         </div>
         <div className="equals-sign">=</div>
         <div className="box right">

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import GameDisplay from "./components/GameDisplay";
 import OperationSelection from "./components/OperationSelection";
 
@@ -40,20 +40,23 @@ function App() {
     }
   }, [selectedOperation, generateNumbers]);
 
-  const handleOperationSelect = useCallback((selectedOperation) => {
-    setSelectedOperation(selectedOperation);
-    setShowOperationSelection(false);
-    generateNumbers();
-  }, [generateNumbers]);
+  const handleOperationSelect = useCallback(
+    (selectedOperation) => {
+      setSelectedOperation(selectedOperation);
+      setShowOperationSelection(false);
+      generateNumbers();
+    },
+    [generateNumbers]
+  );
 
   const handleNext = useCallback(() => {
     generateNumbers();
     setShowNum3(false);
   }, [generateNumbers]);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     setShowNum3(true);
-  }, []);
+  };
 
   const handleChangeOperation = useCallback(() => {
     setShowOperationSelection(true);
@@ -74,7 +77,7 @@ function App() {
             num2={num2}
             num3={num3}
             showNum3={showNum3}
-            onNext={handleNext}
+            onNext={handleClick}
             selectedOperation={selectedOperation}
             onClick={handleClick}
           />
