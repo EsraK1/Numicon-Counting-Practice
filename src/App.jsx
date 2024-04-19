@@ -49,10 +49,10 @@ function App() {
     [generateNumbers]
   );
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     generateNumbers();
     setShowNum3(false);
-  }, [generateNumbers]);
+  };
 
   const handleClick = () => {
     setShowNum3(true);
@@ -77,7 +77,6 @@ function App() {
             num2={num2}
             num3={num3}
             showNum3={showNum3}
-            onNext={handleClick}
             selectedOperation={selectedOperation}
             onClick={handleClick}
           />

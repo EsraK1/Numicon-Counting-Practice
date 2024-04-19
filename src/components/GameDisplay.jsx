@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 function GameDisplay({
   num1,
   num2,
   num3,
   showNum3,
-  onNext,
   onClick,
   selectedOperation,
 }) {
+  const [rotation1] = useState(Math.floor(Math.random() * 4) * 90);
+  const [rotation2] = useState(Math.floor(Math.random() * 4) * 90);
+
   const getImageFileName = (num) => {
     if (num < 1 || num > 10) {
       return null;
@@ -16,7 +18,6 @@ function GameDisplay({
     return require(`../numicons/numicon_${num}.png`);
   };
 
-  const rotation = Math.floor(Math.random() * 4) * 90;
   return (
     <div className="game-display">
       <div className="container">
@@ -25,7 +26,7 @@ function GameDisplay({
             src={getImageFileName(num1)}
             alt={num1}
             style={{
-              transform: `rotate(${rotation}deg)`,
+              transform: `rotate(${rotation1}deg)`,
             }}
             className="box-img"
           />
@@ -43,7 +44,7 @@ function GameDisplay({
             src={getImageFileName(num2)}
             alt={num2}
             style={{
-              transform: `rotate(${rotation}deg)`,
+              transform: `rotate(${rotation2}deg)`,
             }}
             className="box-img"
           />
