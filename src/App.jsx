@@ -18,7 +18,7 @@ function App() {
 
     while (newNum1 === 0 || newNum2 === 0) {
       newNum1 = Math.floor(Math.random() * 10);
-      newNum2 = Math.floor(Math.random() * 10);
+      newNum2 = Math.floor(Math.random() * newNum1);
     }
 
     switch (selectedOperation) {
