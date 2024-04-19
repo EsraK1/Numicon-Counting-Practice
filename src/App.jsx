@@ -21,9 +21,6 @@ function App() {
       newNum2 = Math.floor(Math.random() * 10);
     }
 
-    setNum1(newNum1);
-    setNum2(newNum2);
-
     switch (selectedOperation) {
       case "addition":
         setNum3(newNum1 + newNum2);
@@ -34,13 +31,11 @@ function App() {
       default:
         setNum3(0);
     }
+
+    setNum1(newNum1);
+    setNum2(newNum2);
   }, [selectedOperation]);
 
-  useEffect(() => {
-    if (selectedOperation) {
-      generateNumbers();
-    }
-  }, [selectedOperation, generateNumbers]);
 
   const handleOperationSelect = useCallback(
     (selectedOperation) => {
