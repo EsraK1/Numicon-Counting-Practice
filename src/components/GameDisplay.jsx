@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function GameDisplay({
   num1,
   num2,
   num3,
   showNum3,
+  onNext,
   onClick,
   selectedOperation,
 }) {
-  const [rotation1] = useState(Math.floor(Math.random() * 4) * 90);
-  const [rotation2] = useState(Math.floor(Math.random() * 4) * 90);
+  const [rotation1, setRotation1] = useState(
+    () => Math.floor(Math.random() * 4) * 90
+  );
+  const [rotation2, setRotation2] = useState(
+    () => Math.floor(Math.random() * 4) * 90
+  );
+
+  useEffect(() => {
+    setRotation1(Math.floor(Math.random() * 4) * 90);
+    setRotation2(Math.floor(Math.random() * 4) * 90);
+  }, []);
 
   const getImageFileName = (num) => {
     if (num < 1 || num > 10) {
