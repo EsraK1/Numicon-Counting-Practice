@@ -9,6 +9,8 @@ function App() {
   const [num2, setNum2] = useState(0);
   const [num3, setNum3] = useState(0);
   const [showNum3, setShowNum3] = useState(false);
+  const [rotation1, setRotation1] = useState();
+  const [rotation2, setRotation2] = useState();
 
   const generateNumbers = useCallback(() => {
     let newNum1 = 0;
@@ -51,6 +53,8 @@ function App() {
 
   const handleNext = () => {
     generateNumbers();
+    setRotation1(Math.floor(Math.random() * 4) * 90);
+    setRotation2(Math.floor(Math.random() * 4) * 90);
     setShowNum3(false);
   };
 
@@ -79,6 +83,9 @@ function App() {
             showNum3={showNum3}
             selectedOperation={selectedOperation}
             onClick={handleClick}
+            rotation1={rotation1}
+            rotation2={rotation2}
+            onNext={handleNext}
           />
           <div className="button-container">
             <button className="button" onClick={handleNext}>
