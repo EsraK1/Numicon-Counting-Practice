@@ -11,6 +11,26 @@ function App() {
   const [showNum3, setShowNum3] = useState(false);
   const [rotation1, setRotation1] = useState();
   const [rotation2, setRotation2] = useState();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(
+
+  );
+
+  useEffect(() => {
+    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
+  
+    const handleOrientationChange = () => {
+      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+    };
+  
+    window.addEventListener("orientationchange", handleOrientationChange);
+  
+    return () => {
+      window.removeEventListener("orientationchange", handleOrientationChange);
+    };
+  }, []);
+
+console.log(isMobile, isLandscape)
 
   const generateNumbers = useCallback(() => {
     let newNum1 = 0;
@@ -21,21 +41,15 @@ function App() {
       newNum2 = Math.floor(Math.random() * newNum1);
     }
 
-    switch (selectedOperation) {
-      case "addition":
-        setNum3(newNum1 + newNum2);
-        break;
-      case "subtraction":
-        setNum3(newNum1 - newNum2);
-        break;
-      default:
-        setNum3(0);
+    if (selectedOperation === "addition") {
+      setNum3(newNum1 + newNum2);
+    } else {
+      setNum3(newNum1 - newNum2);
     }
 
     setNum1(newNum1);
     setNum2(newNum2);
   }, [selectedOperation]);
-
 
   const handleOperationSelect = useCallback(
     (selectedOperation) => {
@@ -46,12 +60,12 @@ function App() {
     [generateNumbers]
   );
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     generateNumbers();
+    setShowNum3(false);
     setRotation1(Math.floor(Math.random() * 4) * 90);
     setRotation2(Math.floor(Math.random() * 4) * 90);
-    setShowNum3(false);
-  };
+  }, [generateNumbers]);
 
   const handleClick = () => {
     setShowNum3(true);
@@ -61,11 +75,14 @@ function App() {
     setShowOperationSelection(true);
     setSelectedOperation(null);
     setShowNum3(false);
+    setRotation1(Math.floor(Math.random() * 4) * 90);
+    setRotation2(Math.floor(Math.random() * 4) * 90);
   }, []);
 
   return (
     <div className="page">
       <h1>Numicon {selectedOperation} practice</h1>
+      {isMobile && isLandscape && <p>Please rotate your device.</p>}
       {showOperationSelection ? (
         <OperationSelection onSelect={handleOperationSelect} />
       ) : (
