@@ -12,7 +12,7 @@ function App() {
   const [rotation1, setRotation1] = useState();
   const [rotation2, setRotation2] = useState();
   const [isMobile, setIsMobile] = useState(false);
-  const [isLandscape, setIsLandscape] = useState(
+  const [isLandscape, setIsLandscape] = useState((window.matchMedia("(orientation: portrait)").matches)? false : true
 
   );
 
@@ -20,7 +20,7 @@ function App() {
     setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
   
     const handleOrientationChange = () => {
-      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+      setIsLandscape(window.matchMedia("(orientation: portrait)").matches);
     };
   
     window.addEventListener("orientationchange", handleOrientationChange);
@@ -30,7 +30,6 @@ function App() {
     };
   }, []);
 
-console.log(isMobile, isLandscape)
 
   const generateNumbers = useCallback(() => {
     let newNum1 = 0;
@@ -82,7 +81,7 @@ console.log(isMobile, isLandscape)
   return (
     <div className="page">
       <h1>Numicon {selectedOperation} practice</h1>
-      {isMobile && isLandscape && <p>Please rotate your device.</p>}
+      {isMobile && !isLandscape && <p>Please rotate your device.</p>}
       {showOperationSelection ? (
         <OperationSelection onSelect={handleOperationSelect} />
       ) : (
