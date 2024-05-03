@@ -4,6 +4,8 @@ I envision an app tailored for teachers seeking to enhance addition practice usi
 
 In addition to the current features, I aim to empower teachers with the flexibility to choose between addition or subtraction exercises within the app. Furthermore, I plan to broaden the app's scope by incorporating an array of resources for both addition and subtraction practices. This expansion will ensure that educators can tailor their teaching approach to suit the unique requirements of their students, ultimately fostering a more engaging and effective learning experience.
 
+Moreover, numicons will rotate to prevent students from relying on specific visual cues. Addition focuses on number bonds to 10, while subtraction always presents the larger number subtracting the smaller. This approach builds a strong foundation for mathematical fluency and problem-solving skills
+
 Open deployed version of the project by clicking [here](https://numicon-mathematics-practice.netlify.app/).
 
 ## Available Scripts
